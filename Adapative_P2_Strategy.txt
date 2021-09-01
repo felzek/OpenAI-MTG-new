@@ -1,0 +1,14 @@
+Metric that evaluates the board. Some kind of point system that says are we winning or losing.
+	- Starts at 50%, changes every time you make a decision
+	- Based on only creatures
+		- Creature attack ( start by attacking roundup(# of creatures/2) )
+			- Creatures = my creatures - their creatures (21 x 21 matrix)
+				- Nonnegative means winning
+				- Negative means losing
+				- After block: are ya winning son (another board state evaluation)
+					- if ahead (50% chance that value will increase by 1, not exceeding the number of creatures)
+			- (wait on it) Life totals = my life - their life (make an array from -20 to 20, populate with probability 0.5)
+				- Nonnegative means winning
+				- Negative means losing
+			- 
+				
