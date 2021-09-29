@@ -30,7 +30,7 @@ for x in range(n):
                 decision_array[x,y,z,a] = int(math.ceil(x/2))
                 
 #defining decision function
-def decision(self_creatures=0, opponent_creatures=0, self_life=20, opponent_life=20):
+def decision(count_array, self_creatures=0, opponent_creatures=0, self_life=20, opponent_life=20):
     attacking_creatures = decision_array[self_creatures, opponent_creatures, self_life, opponent_life]
     count_array[self_creatures, opponent_creatures, self_life, opponent_life] += 1
     count_array = count_array.astype(int)
