@@ -19,8 +19,10 @@ import math
 #global variables
 # Number of max creatures and life, can change to other variables
 n = 21
+global probability_array
 global count_array
 global decision_array
+probability_array = np.full((n,n,n,n), 0.5)
 count_array = np.full((n,n,n,n), 0)
 decision_array = np.full((n,n,n,n), 0.5)
 for x in range(n):
@@ -38,13 +40,19 @@ def decision(count_array, self_creatures=0, opponent_creatures=0, self_life=20, 
 
 def reward(decision_array, count_array ,winner=None): #currently self = player 2, opponent = player 1
     count_array = count_array.astype(int)
-    boolArr = count_array != 0 
+    boolArr = count_array != 0
     if winner == True:
-        decision_array[boolArr] += count_array[boolArr]
+        probability_array[boolArr] += 0.05
+        np.clip(probability_array,0,1, out = probability_array)
+        x = np.random.random()
+        decision_array[probability_array <= x] += np.random.choice([-1,1])
         for i in range(n):
             np.clip(decision_array[i,:,:,:], 0, i, out = decision_array[i,:,:,:])
     else:
-        decision_array[boolArr] = decision_array[boolArr] - count_array[boolArr]
+        probability_array[boolArr] -= 0.05
+        np.clip(probability_array,0,1, out = probability_array)
+        x = np.random.random()
+        decision_array[probability_array <= x] += np.random.choice([-1,1])
         for i in range(n):
             np.clip(decision_array[i,:,:,:], 0, i, out = decision_array[i,:,:,:])
     decision_array = decision_array.astype(int)
