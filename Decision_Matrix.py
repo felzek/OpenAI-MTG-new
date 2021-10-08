@@ -29,7 +29,7 @@ for x in range(n):
     for y in range(n):
         for z in range(n):
             for a in range(n):
-                decision_array[x,y,z,a] = int(math.ceil(x/2))
+                decision_array[x,y,z,a] = int(math.ceil((9*x)/10))
                 
 #defining decision function
 def decision(count_array, self_creatures=0, opponent_creatures=0, self_life=20, opponent_life=20):
