@@ -29,7 +29,7 @@ for x in range(n):
     for y in range(n):
         for z in range(n):
             for a in range(n):
-                decision_array[x,y,z,a] = int(math.ceil((9*x)/10))
+                decision_array[x,y,z,a] = int(math.ceil(9*x/10))
                 
 #defining decision function
 def decision(count_array, self_creatures=0, opponent_creatures=0, self_life=20, opponent_life=20):
@@ -42,14 +42,14 @@ def reward(decision_array, count_array ,winner=None): #currently self = player 2
     count_array = count_array.astype(int)
     boolArr = count_array != 0
     if winner == True:
-        probability_array[boolArr] += 0.05
+        probability_array[boolArr] += 0.1
         np.clip(probability_array,0,1, out = probability_array)
         x = np.random.random()
         decision_array[probability_array <= x] += np.random.choice([-1,1])
         for i in range(n):
             np.clip(decision_array[i,:,:,:], 0, i, out = decision_array[i,:,:,:])
     else:
-        probability_array[boolArr] -= 0.05
+        probability_array[boolArr] -= 0.1
         np.clip(probability_array,0,1, out = probability_array)
         x = np.random.random()
         decision_array[probability_array <= x] += np.random.choice([-1,1])
