@@ -28,5 +28,5 @@ import math
 #### creatures opponent blocked with
 
 game_history = pd.DataFrame(columns = ["Game","Round","LFT","CP","SLT", "OLT","ST","SUC","OUC","STC","OTC","SAC","OAC","SBC","OBC"])
-game_history.set_index(['Game', 'Round'], inplace = True)
+# game_history.set_index(['Game', 'Round'], inplace = True) ## set index at the end
 game_history.astype(dtype = {"LFT": bool, "CP" : int, "SLT": int, "OLT": int , "SUC": int,"OUC": int,"STC": int,"OTC": int,"SAC": int,"OAC": int,"SBC": int,"OBC": int})
